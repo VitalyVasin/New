@@ -25,4 +25,5 @@ my_family_height = [164, 160, 178, 155]
 
 print('Рост отца -', my_family_height[-2], 'см')
 print('Общий рост моей семьи -', my_family_height[0] + my_family_height[1] + my_family_height[2] + my_family_height[3], 'см')
+#TODO переделать согласно заданию
 
