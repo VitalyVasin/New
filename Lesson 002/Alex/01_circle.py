@@ -9,7 +9,16 @@ radius = 42
 #       формулу можно подсмотреть в интернете,
 #       пи возьмите равным 3.1415926
 #       точность указывается в функции round()
-# TODO здесь ваш код
+
+r = radius
+П = 3.1415926
+
+S = П * r ** 2
+
+A = round(S, 4)
+
+print(A)
+
 
 
 # Далее, пусть есть координаты точки
@@ -23,13 +32,40 @@ point = (23, 34)
 #       формула так же есть в интернете
 #       квадратный корень - это возведение в степень 0.5
 #       операции сравнения дают булевы константы True и False
-# TODO здесь ваш код
+
+tochka = {
+    'Point1': (23, 34),
+    'Point2': (30, 30),
+    'Zero': (0, 0),
+  }
+
+distances = dict()
+point1 = tochka['Point1']
+point2 = tochka['Point2']
+zero = tochka['Zero']
+
+zero_point1 = ((point1[0] - zero[0]) ** 2 + (point1[1] - zero[1]) ** 2) ** .5
+
+distances['Point1'] = {}
+distances['Point1']['Zero'] = zero_point1
+
+zero_point2 = ((point2[0] - zero[0]) ** 2 + (point2[1] - zero[1]) ** 2) ** .5
+
+distances['Point2'] = {}
+distances['Point2']['Zero'] = zero_point2
+
+result1 = r > zero_point1
+result2 = r > zero_point2
+
+print(result1)
+print(result2)
+
+
 
 # Аналогично для другой точки
 point_2 = (30, 30)
 # Если точка point_2 лежит внутри круга (radius = 42), то выведите на консоль True,
 # Или False, если точка лежит вовне круга.
-# TODO здесь ваш код
 
 # Пример вывода на консоль:
 #
