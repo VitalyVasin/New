@@ -21,8 +21,16 @@ my_family_height = [
 
 my_family = ['мама', 'сестра', 'отец', 'брат']
 
-my_family_height = [164, 160, 178, 155]
+my_family_height = [
+    ['мама', 165], ['сестра', 160], ['отец', 178], ['брат', 195]
+]
 
-print('Рост отца -', my_family_height[-2], 'см')
-print('Общий рост моей семьи -', my_family_height[0] + my_family_height[1] + my_family_height[2] + my_family_height[3], 'см')
+print('Рост отца -', my_family_height[-2][-1], 'см')
+print('Общий рост моей семьи -', my_family_height[0][-1] + my_family_height[1][-1] + my_family_height[2][-1] + my_family_height[3][-1], 'см')
+
+
+
+
+
+#TODO переделать согласно заданию
 
