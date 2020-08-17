@@ -3,7 +3,7 @@
 # (цикл for)
 
 import simple_draw as sd
-sd.resolution = (400, 500)
+sd.resolution = (600, 600)
 rainbow_colors = (sd.COLOR_RED, sd.COLOR_ORANGE, sd.COLOR_YELLOW, sd.COLOR_GREEN,
                   sd.COLOR_CYAN, sd.COLOR_BLUE, sd.COLOR_PURPLE)
 
@@ -21,6 +21,9 @@ for colors in rainbow_colors[::1]:
 # Усложненное задание, делать по желанию.
 # Нарисовать радугу дугами от окружности (cсм sd.circle) за нижним краем экрана,
 # поэкспериментировать с параметрами, что бы было красиво
-# TODO здесь ваш код
-
+point = sd.get_point(300, 0)
+radius = 350
+for colors in rainbow_colors[::1]:
+    radius += 20
+    sd.circle(center_position=point, radius=radius, width=20, color=colors)
 sd.pause()
