@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Есть словарь кодов товаров
 
 goods = {
@@ -46,7 +45,12 @@ store = {
 #         подсчет стоимости товара
 #     вывод на консоль количества и стоимости товара на складе
 
-# TODO здесь ваш код
+for xxx in goods:
+    one_goods_cost, quantity_goods = 0, 0
+    for yyy in store[goods[xxx]]:
+        one_goods_cost += yyy['quantity'] * yyy['price']
+        quantity_goods += yyy['quantity']
+    print(xxx, ' - ', quantity_goods, 'шт, стоимость', one_goods_cost, 'руб')
 
 
 
