@@ -11,7 +11,7 @@ def bubble(point, step):
     radius = 50
     for _ in range(3):
         radius += step
-        sd.circle(center_position=point, radius=radius, width=2)
+        sd.circle(center_position=point, radius=radius, color=sd.random_color(), width=2)
 #point = sd.get_point(300, 300)
 #bubble(point=point, step=10)
 
@@ -31,7 +31,7 @@ def bubble(point, step):
 
 for _ in range(100):
     point = sd.random_point()
-    step = random.randint(2, 20)
+    step = random.randint(2, 100)
     bubble(point=point, step=step)
 
 
