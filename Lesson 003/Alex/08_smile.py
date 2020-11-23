@@ -3,13 +3,13 @@
 # (определение функций)
 import simple_draw as sd
 
-sd.resolution = (600, 600)
+sd.resolution = (1200, 600)
 
 
 
 # Написать функцию отрисовки смайлика в произвольной точке экрана
 
-def smile(x, y):
+def smile(x, y, color):
         point2 = sd.get_point(x, y)
         point3 = sd.get_point(x + 40, y)
         point_ellipse1 = sd.get_point(x - 50, y - 65)
@@ -19,17 +19,17 @@ def smile(x, y):
         line_point3 = sd.get_point(x + 40, y - 35)
         line_point4 = sd.get_point(x + 50, y - 25)
         radius2 = 5
-        sd.circle(center_position=point2, radius=radius2, width=3)
-        sd.circle(center_position=point3, radius=radius2, width=3)
-        sd.line(start_point=line_point1, end_point=line_point2, width=3)
-        sd.line(start_point=line_point2, end_point=line_point3, width=3)
-        sd.line(start_point=line_point3, end_point=line_point4, width=3)
-        sd.ellipse(left_bottom=point_ellipse1, right_top=point_ellipse2, width=3)
+        sd.circle(center_position=point2, radius=radius2, color=color, width=3)
+        sd.circle(center_position=point3, radius=radius2, color=color, width=3)
+        sd.line(start_point=line_point1, end_point=line_point2, color=color, width=3)
+        sd.line(start_point=line_point2, end_point=line_point3, color=color, width=3)
+        sd.line(start_point=line_point3, end_point=line_point4, color=color, width=3)
+        sd.ellipse(left_bottom=point_ellipse1, right_top=point_ellipse2, color=color, width=3)
 
 for _ in range(10):
-        x = sd.random_number(0, 600)
-        y = sd.random_number(0, 600)
-        smile(x=x, y=y)
+        x = sd.random_number(100, 1100)
+        y = sd.random_number(100, 500)
+        smile(x=x, y=y, color=sd.random_color())
 
 
 # Форма рожицы-смайлика на ваше усмотрение
