@@ -4,8 +4,7 @@
 import simple_draw as sd
 
 sd.resolution = (600, 600)
-x = sd.random_number(0, 600)
-y = sd.random_number(0, 600)
+
 
 
 # Написать функцию отрисовки смайлика в произвольной точке экрана
@@ -28,6 +27,8 @@ def smile(x, y):
         sd.ellipse(left_bottom=point_ellipse1, right_top=point_ellipse2, width=3)
 
 for _ in range(10):
+        x = sd.random_number(0, 600)
+        y = sd.random_number(0, 600)
         smile(x=x, y=y)
 
 
