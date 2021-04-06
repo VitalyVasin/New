@@ -25,7 +25,7 @@ while True:
     point2 = sd.get_point(x2, y2)
     sd.snowflake(center=point2, length=30)
     y2 -= 10
-    if y2 < 50:
+    if y2 < 30:
        break
     x2 = x2 + 20
 
