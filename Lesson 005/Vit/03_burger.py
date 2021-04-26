@@ -15,4 +15,19 @@
 # Создать рецепт своего бургера, по вашему вкусу.
 # Если не хватает инградиентов - создать соответствующие функции в модуле my_burger
 
-# TODO здесь ваш код
+import my_burger
+print('Рецепт Двойного чизбургера')
+my_burger.meat()
+my_burger.bread()
+my_burger.souce()
+my_burger.cucumber()
+my_burger.cheese()
+
+print('\nMy favorite burger')
+my_burger.meat()
+my_burger.bread()
+my_burger.souce()
+my_burger.cucumber()
+my_burger.souce()
+my_burger.cheese()
+my_burger.tomato()
