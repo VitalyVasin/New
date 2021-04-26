@@ -5,7 +5,6 @@
 
 import room_1 as r1
 import room_2 as r2
-name = []
 
 names_str = ",".join(r1.folks)
 names_str2 = ",".join(r2.folks)
