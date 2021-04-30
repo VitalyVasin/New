@@ -19,6 +19,30 @@
 # Приправить своей фантазией по вкусу (коты? коровы? люди? трактор? что придумается)
 
 # TODO здесь ваш код
+import simple_draw as sd
+
+from all import rainbow
+from all import wall
+from all import smile
+from all import tree
+from all import snow
+
+
+
+
+rainbow.rainbow()
+wall.wall()
+smile.smile(x1=850, y1=100, color1=sd.COLOR_YELLOW)
+
+angle_4 = 90
+length_4 = 200
+delta1 = sd.random_number(a=30, b=40)
+delta2 = sd.random_number(a=30, b=40)
+point_4 = sd.get_point(1250, 5)
+tree.tree(point=point_4, angle=angle_4, length1=90, length2=90, delta1=delta1, delta2=delta2)
+snow.snow()
+
+sd.pause()
 
 # Усложненное задание (делать по желанию)
 # Анимировать картину.
