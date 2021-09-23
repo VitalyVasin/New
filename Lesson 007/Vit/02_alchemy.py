@@ -30,7 +30,7 @@ class Water:
         return 'Water'
 
     def __add__(self, other):
-        return Result(part1=self, part2=other)
+        return Mixer(part1=self, part2=other)
 
 
 class Air:
@@ -38,24 +38,25 @@ class Air:
         return 'Air'
 
     def __add__(self, other):
-        return Result(part1=self, part2=other)
+        return Mixer(part1=self, part2=other)
 
 class Fire:
     def __str__(self):
         return 'Fire'
 
     def __add__(self, other):
-        return Result(part1=self, part2=other)
+        return Mixer(part1=self, part2=other)
 
 class Soil:
     def __str__(self):
         return 'Soil'
 
     def __add__(self, other):
-        return Result(part1=self, part2=other)
+        return Mixer(part1=self, part2=other)
 
 
-class Result:
+
+class Mixer:
     def __init__(self, part1, part2):
         self.part1 = part1
         self.part2 = part2
@@ -117,6 +118,7 @@ S = Soil()
 print(Water(), '+', Air(), '=', Water() + Air())
 print(Fire(), '+', Air(), '=', Fire() + Air())
 
+print(Water()+Air())
 
 # Усложненное задание (делать по желанию)
 # Добавить еще элемент в игру.
