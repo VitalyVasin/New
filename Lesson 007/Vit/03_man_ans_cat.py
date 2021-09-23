@@ -92,9 +92,9 @@ class Man:
         dice = randint(1, 6)
         if self.fullness < 30:
             self.eat()
-        elif self.house.money < 100:
+        elif self.house.money < 50:
             self.work()
-        elif self.house.food < 30:
+        elif self.house.food < 60:
             self.shopping()
         elif self.house.food_for_cat < 30:
             self.shopping_for_cat()
