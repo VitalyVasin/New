@@ -44,9 +44,10 @@ from random import randint
 
 class House:
 
-    def __init__(self, money = 100, food = 50, soil = 0, eatfood = 0, workmoney = 0):
+    def __init__(self, money = 100, food = 50, soil = 0, eatfood = 0, workmoney = 0, cat_food = 30):
         self.money = money
         self.food = food
+        self.cat_food = cat_food
         self.soil = soil
         self.eatfood = eatfood
         self.workmoney = workmoney
@@ -186,22 +187,24 @@ class Wife:
         cprint('{} Вьехала в дом'.format(self.name), color='cyan')
 
 
-home = House()
-serge = Husband(name='Сережа')
-masha = Wife(name='Маша')
-
-serge.go_to_the_house(house=home)
-masha.go_to_the_house(house=home)
-
-
-for day in range(1, 366):
-    cprint('================== День {} =================='.format(day), color='red')
-    serge.act()
-    masha.act()
-    home.soil += 5
-    cprint(serge, color='cyan')
-    cprint(masha, color='cyan')
-    cprint(home, color='cyan')
+# home = House()
+# serge = Husband(name='Сережа')
+# masha = Wife(name='Маша')
+# murzik = Cat(name='Мурзик')
+#
+# serge.go_to_the_house(house=home)
+# masha.go_to_the_house(house=home)
+# murzik.go_to_the_house(house=home)
+#
+#
+# for day in range(1, 366):
+#     cprint('================== День {} =================='.format(day), color='red')
+#     serge.act()
+#     masha.act()
+#     home.soil += 5
+#     cprint(serge, color='cyan')
+#     cprint(masha, color='cyan')
+#     cprint(home, color='cyan')
 
 # TODO после реализации первой части - отдать на проверку учителю
 
@@ -232,21 +235,46 @@ for day in range(1, 366):
 
 class Cat:
 
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
+        self.hunger = 30
+        self.house = None
+
+    def __str__(self):
+        return 'Я - {}, сытость {}'.format(
+            self.name, self.hunger)
 
     def act(self):
-        pass
+        if self.hunger < 0:
+            print('{} умер из-за еды'.format(self.name))
+        elif self.hunger <= 20:
+            self.eat()
+        else:
+            dice_cat = randint(1, 3)
+            if dice_cat == 1:
+                self.eat()
+            elif dice_cat == 2:
+                self.sleep()
+            else:
+                self.soil()
 
     def eat(self):
-        pass
+        self.hunger += 20
+        self.house.cat_food -= 10
+        self.house.eatfood += 30
+        print('{} поел, сытости {}'.format(self.name, self.hunger))
 
     def sleep(self):
-        pass
+        self.hunger -= 10
+        print('{} спал весь день, сытости {}'.format(self.name, self.hunger))
 
     def soil(self):
-        pass
+        self.hunger -= 10
+        print('{} драл обои {}'.format(self.name, self.hunger))
 
+    def go_to_the_house(self, house):
+        self.house = house
+        cprint('{} Вьехал в дом'.format(self.name), color='cyan')
 
 ######################################################## Часть вторая бис
 #
@@ -287,22 +315,27 @@ class Child:
 # отправить на проверку учителем.
 
 
-# home = House()
-# serge = Husband(name='Сережа')
-# masha = Wife(name='Маша')
+home = House()
+serge = Husband(name='Сережа')
+masha = Wife(name='Маша')
 # kolya = Child(name='Коля')
-# murzik = Cat(name='Мурзик')
-#
-# for day in range(365):
-#     cprint('================== День {} =================='.format(day), color='red')
-#     serge.act()
-#     masha.act()
-#     kolya.act()
-#     murzik.act()
-#     cprint(serge, color='cyan')
-#     cprint(masha, color='cyan')
-#     cprint(kolya, color='cyan')
-#     cprint(murzik, color='cyan')
+murzik = Cat(name='Мурзик')
+
+serge.go_to_the_house(house=home)
+masha.go_to_the_house(house=home)
+murzik.go_to_the_house(house=home)
+
+for day in range(1, 366):
+    cprint('================== День {} =================='.format(day), color='red')
+    home.soil += 5
+    serge.act()
+    masha.act()
+    # kolya.act()
+    murzik.act()
+    cprint(serge, color='cyan')
+    cprint(masha, color='cyan')
+    # cprint(kolya, color='cyan')
+    cprint(murzik, color='cyan')
 
 
 # Усложненное задание (делать по желанию)
