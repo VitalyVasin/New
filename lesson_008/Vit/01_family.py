@@ -186,22 +186,22 @@ class Wife:
         cprint('{} Вьехала в дом'.format(self.name), color='cyan')
 
 
-home = House()
-serge = Husband(name='Сережа')
-masha = Wife(name='Маша')
-
-serge.go_to_the_house(house=home)
-masha.go_to_the_house(house=home)
-
-
-for day in range(1, 366):
-    cprint('================== День {} =================='.format(day), color='red')
-    serge.act()
-    masha.act()
-    home.soil += 5
-    cprint(serge, color='cyan')
-    cprint(masha, color='cyan')
-    cprint(home, color='cyan')
+# home = House()
+# serge = Husband(name='Сережа')
+# masha = Wife(name='Маша')
+#
+# serge.go_to_the_house(house=home)
+# masha.go_to_the_house(house=home)
+#
+#
+# for day in range(1, 366):
+#     cprint('================== День {} =================='.format(day), color='red')
+#     home.soil += 5
+#     serge.act()
+#     masha.act()
+#     cprint(serge, color='cyan')
+#     cprint(masha, color='cyan')
+#     cprint(home, color='cyan')
 
 # TODO после реализации первой части - отдать на проверку учителю
 
@@ -261,20 +261,42 @@ class Cat:
 
 class Child:
 
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
+        self.hunger = 30
+        self.happy = 100
+        self.house = None
 
     def __str__(self):
-        return super().__str__()
+        return 'Я - {}, сытость {}, счастье {}'.format(
+            self.name, self.hunger, self.happy)
+        # return super().__str__()
 
     def act(self):
-        pass
+        if self.hunger < 0:
+            print('{} умерла из-за еды'.format(self.name))
+        elif self.hunger <= 20:
+            self.eat()
+        else:
+            dice_child = randint(1, 3)
+            if dice_child == 1:
+                self.eat()
+            elif dice_child == 2:
+                self.sleep()
 
     def eat(self):
-        pass
+        self.hunger += 10
+        self.house.food -= 10
+        self.house.eatfood += 10
+        print('{} поела, сытости {}'.format(self.name, self.hunger))
 
     def sleep(self):
-        pass
+        self.hunger -= 10
+        print('{} поспал, сытости {}'.format(self.name, self.hunger))
+
+    def go_to_the_house(self, house):
+        self.house = house
+        cprint('{} Вьехал в дом'.format(self.name), color='cyan')
 
 
 # TODO после реализации второй части - отдать на проверку учителем две ветки
@@ -287,22 +309,27 @@ class Child:
 # отправить на проверку учителем.
 
 
-# home = House()
-# serge = Husband(name='Сережа')
-# masha = Wife(name='Маша')
-# kolya = Child(name='Коля')
+home = House()
+serge = Husband(name='Сережа')
+masha = Wife(name='Маша')
+kolya = Child(name='Коля')
 # murzik = Cat(name='Мурзик')
-#
-# for day in range(365):
-#     cprint('================== День {} =================='.format(day), color='red')
-#     serge.act()
-#     masha.act()
-#     kolya.act()
-#     murzik.act()
-#     cprint(serge, color='cyan')
-#     cprint(masha, color='cyan')
-#     cprint(kolya, color='cyan')
-#     cprint(murzik, color='cyan')
+
+serge.go_to_the_house(house=home)
+masha.go_to_the_house(house=home)
+kolya.go_to_the_house(house=home)
+
+for day in range(1, 366):
+    cprint('================== День {} =================='.format(day), color='red')
+    home.soil += 5
+    serge.act()
+    masha.act()
+    kolya.act()
+    # murzik.act()
+    cprint(serge, color='cyan')
+    cprint(masha, color='cyan')
+    cprint(kolya, color='cyan')
+    # cprint(murzik, color='cyan')
 
 
 # Усложненное задание (делать по желанию)
