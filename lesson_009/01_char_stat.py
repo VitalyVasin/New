@@ -27,6 +27,7 @@ from pprint import pprint
 
 class Counter_char:
     common_count = 0
+    num = 1
 
     def __init__(self, file_name):
         self.file_name = file_name
@@ -62,35 +63,38 @@ class Counter_char:
             # else:
             #     None
 
-    # def _collect_for_line(self, line):
-    #     for char in line:
-    #         if char.isalpha():
-    #             if self.sequence in self.stat:
-    #                 if char in self.stat[self.sequence]:
-    #                     self.stat[self.sequence][char] += 1
-    #                 else:
-    #                     self.stat[self.sequence][char] = 1
-    #             else:
-    #                 self.stat[self.sequence] = {char: 1}
-    #             self.sequence = self.sequence[1:] + char
-    #         else:
-    #             None
-
     def convert_stat(self):
         print(f'+{"":-^9}+{"":-^10}+')
         print(f'|{"буква": ^9}|{"частота": ^10}|')
         print(f'+{"":-^9}+{"":-^10}+')
-        sorted_tuple = sorted(self.stat.items(), key=lambda x: x[1], reverse=True)
-        for key, value in sorted_tuple:
+        self.pattern(number=self.num)
+        # self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[1], reverse=True)
+        for key, value in self.sorted_tuple:
             print(f'|{key: ^9}|{value: ^10}|')
         print(f'+{"":-^9}+{"":-^10}+')
         print(f'|{"итого": ^9}|{self.common_count: ^10}|')
         print(f'+{"":-^9}+{"":-^10}+')
 
+    def pattern(self, number):
+        self.number = number
+        if self.number == 1:
+            self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[1], reverse=True)
+            # Сортировка по частоте, по убыванию
+        elif self.number == 2:
+            self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[1], reverse=False)
+            # Сортировка по частоте, по возрастанию
+        elif self.number == 3:
+            self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[0], reverse=False)
+           # Сортировка по алфавиту, по возрастанию
+        elif self.number == 4:
+            self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[0], reverse=True)
+            # Сортировка по алфавиту, по убыванию
+
 
 counter = Counter_char(file_name='voyna-i-mir.txt.zip')
 counter.count()
 counter.convert_stat()
+
 # После выполнения первого этапа нужно сделать упорядочивание статистики
 #  - по частоте по возрастанию
 #  - по алфавиту по возрастанию
