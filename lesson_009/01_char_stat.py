@@ -68,7 +68,7 @@ class Counter_char:
         print(f'|{"буква": ^9}|{"частота": ^10}|')
         print(f'+{"":-^9}+{"":-^10}+')
         self.pattern(number=self.num)
-        # self.sorted_tuple = sorted(self.stat.items(), key=lambda x: x[1], reverse=True)
+
         for key, value in self.sorted_tuple:
             print(f'|{key: ^9}|{value: ^10}|')
         print(f'+{"":-^9}+{"":-^10}+')
