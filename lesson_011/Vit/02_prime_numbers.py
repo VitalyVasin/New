@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-
-
 # Есть функция генерации списка простых чисел
-
 
 def get_prime_numbers(n):
     prime_numbers = []
@@ -20,13 +17,30 @@ def get_prime_numbers(n):
 #
 # Распечатать все простые числа до 10000 в столбик
 
-
 class PrimeNumbers:
-    pass
-    # TODO здесь ваш код
+    def __init__(self, n):
+        self.i = 1
+        self.n = n
+        self.number = 0
+        self.prime_numbers = []
+        self.iterator = iter(get_prime_numbers(n))
+        self.next_element_exist = True
 
+    def __iter__(self):
+        return self
 
-prime_number_iterator = PrimeNumbers(n=10000)
+    def __next__(self):
+        while self.next_element_exist:
+            try:
+                element_from_iterator = next(self.iterator)
+                return element_from_iterator
+
+            except UnboundLocalError:
+                self.next_element_exist = False
+
+n = 1000
+prime_number_iterator = PrimeNumbers(n=n)
+
 for number in prime_number_iterator:
     print(number)
 
@@ -37,13 +51,13 @@ for number in prime_number_iterator:
 # Распечатать все простые числа до 10000 в столбик
 
 
-def prime_numbers_generator(n):
-    pass
-    # TODO здесь ваш код
-
-
-for number in prime_numbers_generator(n=10000):
-    print(number)
+# def prime_numbers_generator(n):
+#     pass
+#     # TODO здесь ваш код
+#
+#
+# for number in prime_numbers_generator(n=10000):
+#     print(number)
 
 
 # Часть 3
