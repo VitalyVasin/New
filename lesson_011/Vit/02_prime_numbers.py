@@ -38,11 +38,11 @@ class PrimeNumbers:
             except UnboundLocalError:
                 self.next_element_exist = False
 
-n = 1000
+n = 10
 prime_number_iterator = PrimeNumbers(n=n)
 
-for number in prime_number_iterator:
-    print(number)
+# for number in prime_number_iterator:
+#     print(number)
 
 
 # TODO после подтверждения части 1 преподователем, можно делать
@@ -51,13 +51,19 @@ for number in prime_number_iterator:
 # Распечатать все простые числа до 10000 в столбик
 
 
-# def prime_numbers_generator(n):
-#     pass
-#     # TODO здесь ваш код
-#
-#
-# for number in prime_numbers_generator(n=10000):
-#     print(number)
+def prime_numbers_generator(n):
+    prime_numbers = []
+    for number in range(2, n + 1):
+        for prime in prime_numbers:
+            if number % prime == 0:
+                break
+        else:
+            prime_numbers.append(number)
+            yield prime_numbers[-1]
+    # return prime_numbers
+
+for number in prime_numbers_generator(n=10000):
+    print(number)
 
 
 # Часть 3
