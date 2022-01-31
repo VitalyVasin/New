@@ -62,8 +62,8 @@ def prime_numbers_generator(n):
             yield prime_numbers[-1]
     # return prime_numbers
 
-for number in prime_numbers_generator(n=10000):
-    print(number)
+# for number in prime_numbers_generator(n=10000):
+#     print(number)
 
 
 # Часть 3
@@ -81,3 +81,64 @@ for number in prime_numbers_generator(n=10000):
 # простых счастливых палиндромных чисел и так далее. Придумать не менее 2х способов.
 #
 # Подсказка: возможно, нужно будет добавить параметр в итератор/генератор.
+
+def sum(dict):
+    sum = 0
+    for number in dict:
+        sum = sum + int(number)
+    return sum
+
+def Happy_num(num):
+    status = False
+    l = len(str(num))
+    if len(str(num)) % 2 == 0:
+        if sum(str(num)[0:int(l/2)]) == sum(str(num)[((int(l/2))):l]):
+            status = True
+
+    elif len(str(num)) % 2 == 1:
+        if sum(str(num)[0:int((l -1)/ 2)]) == sum(str(num)[(int((l -1)/ 2))*(-1):l]):
+            status = True
+    return status
+
+
+def Palydrom_num(num):
+    status = False
+    l = len(str(num))
+    dict_a = []
+    dict_b = []
+    if len(str(num)) % 2 == 0:
+        for number in str(num)[0:int(l/2)]:
+            dict_a.append(number)
+        for number in str(num)[-1:((int(l/2))-1):-1]:
+            dict_b.append(number)
+        if dict_a == dict_b:
+            status = True
+    elif len(str(num)) % 2 == 1:
+        for number in str(num)[0:int((l -1)/ 2)]:
+            dict_a.append(number)
+        for number in str(num)[-1:(int((l-1)/2)):-1]:
+            dict_b.append(number)
+        if dict_a == dict_b:
+            status = True
+    else:
+        status = False
+
+    return status
+
+
+num = 123404321
+
+# print(Happy_num(num=num))
+# print(Palydrom_num(num=num))
+
+my_numbers = [1, 101, 102, 12021, 12012, 23014]
+# result_dict = filter(Happy_num, my_numbers)
+# print(list(result_dict))
+# result_dict = filter(Palydrom_num, my_numbers)
+# print(list(result_dict))
+
+result_dict = filter(Palydrom_num, PrimeNumbers(n=100000))
+print(list(result_dict))
+
+result_dict = filter(Happy_num, PrimeNumbers(n=100000))
+print(list(result_dict))
