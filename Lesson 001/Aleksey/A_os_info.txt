@@ -1,4 +1,5 @@
 OS info is 
-uname_result(system='Windows', node='AlexeySK', release='7', version='6.1.7601', machine='AMD64', processor='Intel64 Family 6 Model 78 Stepping 3, GenuineIntel')
+uname_result(system='Darwin', node='Vitalys-iMac', release='19.3.0', version='Darwin Kernel Version 19.3.0: Thu Jan  9 20:58:23 PST 2020; root:xnu-6153.81.5~1/RELEASE_X86_64', machine='x86_64', processor='i386')
 
-Python version is 3.8.3 (tags/v3.8.3:6f8c832, May 13 2020, 22:20:19) [MSC v.1925 32 bit (Intel)] ('32bit', 'WindowsPE')
+Python version is 3.8.3 (v3.8.3:6f8c8320e9, May 13 2020, 16:29:34) 
+[Clang 6.0 (clang-600.0.57)] ('64bit', '')

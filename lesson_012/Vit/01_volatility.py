@@ -74,3 +74,98 @@
 #         <обработка данных>
 
 # TODO написать код в однопоточном/однопроцессорном стиле
+
+import os
+import operator
+from os import walk
+
+
+class Ticker_reader:
+    counter_per_minuts = 0
+    prev_minute = 0
+    TRADETIME = 0
+    SECID = 0
+    PRICE = 0
+    QUANTITY = 0
+    num = 1
+    price_list = []
+    volatility_dict = {}
+
+    def __init__(self, file_in):
+        self.file_in = file_in
+        self.stat = {}
+
+    def count(self):
+        with open(self.file_in, 'r', encoding='cp1251') as file:
+            self.price_list = []
+            for line in file:
+                if (line.split(",")[0:-3])[-1] == 'SECID':
+                    pass
+                else:
+                    self.SECID = (line.split(",")[0:-3])[-1]
+                if (line.split(",")[1:-2])[-1] == 'TRADETIME':
+                    pass
+                else:
+                    self.TRADETIME = (line.split(",")[1:-2])[-1]
+
+                if (line.split(",")[2:-1])[-1] == 'PRICE':
+                    pass
+                else:
+                    self.PRICE = float((line.split(",")[2:-1])[-1])
+                    self.price_list.append(self.PRICE)
+                if (line.split(",")[1:4])[-1] == 'QUANTITY':
+                    pass
+                else:
+                    self.QUANTITY  = (line.split(",")[1:4])[-1]
+
+            self.price_list.sort()
+            min_price = self.price_list[0]
+            max_price = self.price_list[-1]
+            average_price = (max_price + min_price) / 2
+            volatility = ((max_price - min_price) / average_price) * 100
+            self.volatility_dict[self.SECID] = volatility
+
+f = []
+for (dirpath, dirnames, filenames) in walk('trades'):
+    f.extend(filenames)
+
+
+    break
+for file in f:
+    full_filename = "trades/" + file
+
+    counter = Ticker_reader(file_in=full_filename)
+    counter.count()
+
+sorted_tuples = sorted(counter.volatility_dict.items(), key=lambda item: item[1])
+sorted_dict = {k: v for k, v in sorted_tuples}
+
+zero_volatility = {}
+final_volatility_dict = {}
+
+for key, val in sorted_dict.items():
+
+    if val == 0.0:
+        zero_volatility[key] = val
+    else:
+        final_volatility_dict[key] = val
+sorted_final_volatility_dict = sorted(final_volatility_dict.items(), key=lambda item: item[1])
+sorted_final_volatility_dict = dict(sorted_final_volatility_dict)
+
+sorted_zero_volatility = sorted(zero_volatility.items(), key=lambda item: item[0])
+sorted_zero_volatility = dict(sorted_zero_volatility)
+
+print('Минимальная волатильность:')
+for name, value in {i: sorted_final_volatility_dict[i] for i in list(sorted_final_volatility_dict)[:3]}.items():
+    print(name, ' - ', round(value, 2), '%')
+
+print('Максимальная волатильность:')
+for name, value in {i: sorted_final_volatility_dict[i] for i in list(sorted_final_volatility_dict)[-3:]}.items():
+    print(name, ' - ', round(value, 2), '%')
+
+zero_volatility_result = []
+for name, value in sorted_zero_volatility.items():
+    zero_volatility_result.append(name)
+print('Нулевая волатильность:')
+print(*zero_volatility_result, sep=", ")
+

@@ -9,14 +9,29 @@
 
 
 def log_errors(func):
-    pass
+    def surrogate(*args, **kwargs):
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as e:
+            # print(f"Произошла ошибка: {e}.")
+
+            file_name = 'function_errors.log'
+            file = open(file_name, mode='a')
+            # print('Запись в файл: ', str(e), '\n')
+            log_message = func.__name__ + " " + line + " " + str(e)
+            print(log_message)
+            file.write(str(e) + '\n')
+            file.close()
+
+    return surrogate
     # TODO здесь ваш код
 
 
 # Проверить работу на следующих функциях
-@log_errors
-def perky(param):
-    return param / 0
+# @log_errors
+# def perky(param):
+#     return param / 0
 
 
 @log_errors
@@ -43,7 +58,7 @@ for line in lines:
         check_line(line)
     except Exception as exc:
         print(f'Invalid format: {exc}')
-perky(param=42)
+# perky(param=42)
 
 
 # Усложненное задание (делать по желанию).
