@@ -34,7 +34,7 @@ class PostCardMaker:
         message = f"С ужасным праздником тебя!"
         draw.text((10, y), message, font=font, fill=ImageColor.colormap['red'])
 
-        # im.show()
+        im.show()
         out_path = out_path if out_path else 'probe.jpg'
         im.save(out_path)
         print(f'Post card saved az {out_path}')
